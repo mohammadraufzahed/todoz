@@ -26,7 +26,7 @@
                 <h1 class="fs-1 fw-bold">Todoz</h1>
                 <p class="fs-6">Simple Todo List</p>
                 <div>
-                    <a href="#">
+                    <a href="/signup.php">
                         <button class="btn btn-outline-primary">Signup</button>
                     </a>
                     <a href="#">
