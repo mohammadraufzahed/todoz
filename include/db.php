@@ -3,7 +3,7 @@
 define("DB_HOST", "localhost");
 define("DB_NAME", "todoz");
 define("DB_USER", "mohammad");
-define("DB_PASS", "");
+define("DB_PASS", "09351515982Mr@");
 
 // Try to connect to database
 $db = '';

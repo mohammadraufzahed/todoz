@@ -5,7 +5,7 @@ CREATE TABLE `users`(
     `password` VARCHAR(255) NOT NULL,
     `isAdmin` ENUM('Y', 'N') DEFAULT 'N',
     `isAccountEnable` ENUM('Y', 'N') DEFAULT 'Y'
-    );
+);
 CREATE TABLE `settings`(
     `siteName` VARCHAR(50) NOT NULL,
     `siteDescription` TEXT NOT NULL
@@ -15,5 +15,5 @@ CREATE TABLE `todos`(
     `userId` INT NOT NULL,
     `todo` TEXT NOT NULL,
     `isDone` ENUM('Y', 'N') DEFAULT 'N'
-    );
+);
 commit;

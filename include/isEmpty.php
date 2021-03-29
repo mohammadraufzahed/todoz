@@ -1,8 +1,8 @@
 <?php
-function isEmpty ($data): bool
+function isEmpty($data): bool
 {
-	foreach($data as $value){
-		if(empty(trim($value))){
+	foreach ($data as $value) {
+		if (empty(trim($value))) {
 			return true;
 		}
 	}

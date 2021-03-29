@@ -6,8 +6,9 @@ function verifyData($data, $db): array
 	$username = $data["username"];
 	$password = $data["password"];
 	// Send request to database
-	$sql = "SELECT `id`, `isAdmin`, `password` FROM `users` WHERE username='$username'";
+	$sql = "SELECT `id`, `isAdmin`, `password` FROM `users` WHERE username=:username";
 	$query = $db->prepare($sql);
+	$query->bindParam(':username', $username, PDO::PARAM_STR);
 	$query->execute();
 	// Check the query to determine user is exists
 	if ($query->rowCount() !== 1) {
