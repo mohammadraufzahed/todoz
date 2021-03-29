@@ -1,5 +1,5 @@
 <?php
-
+require_once(__DIR__ . "/include/login/errorMngr.php");
 ?>
 <!doctype html>
 <html lang="en">
@@ -24,7 +24,12 @@
 						<div class="pt-3 pb-3 text-center">
 							<h1>Login</h1>
 						</div>
-						<div class="form-floating mb-3 m-auto">
+						<?php
+						if (isset($_GET["error"])) {
+							printError($_GET["error"]);
+						}
+						?>
+						<div class="form-floating mt-3 mb-3 m-auto">
 							<input type="text" class="form-control" name="username" id="username" placeholder="Username">
 							<label for="username">Username</label>
 						</div>

@@ -1,6 +1,6 @@
 <?php
 
-function verifyData($data, $db): array
+function verifyData(array $data, object $db): array
 {
 	// Save data in variables
 	$username = $data["username"];
@@ -13,6 +13,7 @@ function verifyData($data, $db): array
 	// Check the query to determine user is exists
 	if ($query->rowCount() !== 1) {
 		header("location: /login.php?error=2");
+		die();
 	}
 	// Save the data received from database
 	$dbData = $query->fetchAll(PDO::FETCH_OBJ);

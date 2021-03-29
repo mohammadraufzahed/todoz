@@ -10,7 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$isDataEmpty = isEmpty($loginData);
 	// Return to login page with error if data was empty
 	if ($isDataEmpty) {
-		header("location: /login?error=1");
+		header("location: /login.php?error=1");
+		die();
 	}
 	// Verify the data and save the user id
 	$userData = verifyData($loginData, $db);

@@ -1,10 +1,11 @@
 <?php
-function isEmpty($data): bool
+function isEmpty(array $data): bool
 {
+	$isEmpty = false;
 	foreach ($data as $value) {
 		if (empty(trim($value))) {
-			return true;
+			$isEmpty = true;
 		}
 	}
-	return false;
+	return $isEmpty;
 }
