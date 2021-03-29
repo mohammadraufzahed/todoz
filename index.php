@@ -29,7 +29,7 @@
                     <a href="/signup.php">
                         <button class="btn btn-outline-primary">Signup</button>
                     </a>
-                    <a href="#">
+                    <a href="/login.php">
                         <button class="btn btn-light btn-outline-success">Login</button>
                     </a>
                 </div>
