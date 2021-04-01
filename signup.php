@@ -1,3 +1,6 @@
+<?php
+require __DIR__ . "/include/signup/errorMngr.php";
+?>
 <!doctype html>
 <html lang="en">
 
@@ -17,10 +20,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="w-50 h-auto m-auto">
-                    <form class="pt-5 m-auto border-1 border-success" action="#" method="post">
+                    <form class="pt-5 m-auto border-1 border-success" action="/include/signup/doSignup.php" method="post">
                         <div class="pt-3 pb-3 text-center">
                             <h1>Signup</h1>
                         </div>
+                        <?php
+                        printError();
+                        ?>
                         <div class="form-floating mb-3 m-auto">
                             <input type="text" class="form-control" name="username" id="username" placeholder="Username">
                             <label for="username">Username</label>
@@ -34,7 +40,7 @@
                             <label for="username">Password</label>
                         </div>
                         <div class="form-floating pb-3 m-auto">
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Confirm Password">
+                            <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm Password">
                             <label for="username" style="font-size: .8rem">Confirm Password</label>
                         </div>
                         <div class="pb-3 m-auto text-center">
