@@ -1,5 +1,16 @@
 <?php
-require __DIR__ . "/include/signup/errorMngr.php";
+require_once __DIR__ . "/class/Account/Register.php";
+require __DIR__ . "/class/ErrorManager.php";
+
+if (isset($_POST["signup"])) {
+	$username = $_POST["username"];
+	$email = $_POST["email"];
+	$password = $_POST["password"];
+	$passwordConfirm = $_POST["passwordConfirm"];
+	$register = new Register($username, $email, $password, $passwordConfirm);
+
+	$register->registerUser();
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -7,7 +18,8 @@ require __DIR__ . "/include/signup/errorMngr.php";
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
     <!--Load the css-->
@@ -16,46 +28,53 @@ require __DIR__ . "/include/signup/errorMngr.php";
 </head>
 
 <body>
-    <div class="container-fluid bg-light w-100 h-100">
-        <div class="row">
-            <div class="col-12">
-                <div class="w-50 h-auto m-auto">
-                    <form class="pt-5 m-auto border-1 border-success" action="/include/signup/doSignup.php" method="post">
-                        <div class="pt-3 pb-3 text-center">
-                            <h1>Signup</h1>
-                        </div>
-                        <?php
-                        printError();
-                        ?>
-                        <div class="form-floating mb-3 m-auto">
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Username">
-                            <label for="username">Username</label>
-                        </div>
-                        <div class="form-floating pb-3 m-auto">
-                            <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                            <label for="username">Email</label>
-                        </div>
-                        <div class="form-floating pb-3 m-auto">
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-                            <label for="username">Password</label>
-                        </div>
-                        <div class="form-floating pb-3 m-auto">
-                            <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm Password">
-                            <label for="username" style="font-size: .8rem">Confirm Password</label>
-                        </div>
-                        <div class="pb-3 m-auto text-center">
-                            <button type="submit" class="btn btn-lg btn-light btn-outline-primary">Signup</button>
-                        </div>
-                        <div class="pb-3 m-auto text-center">
-                            <a href="/login.php" class="fs-6 text-decoration-none link-secondary">Do you have account?</a>
-                        </div>
-                    </form>
-                </div>
+<div class="container-fluid bg-light w-100 h-100">
+    <div class="row">
+        <div class="col-12">
+            <div class="w-50 h-auto m-auto">
+                <form class="pt-5 m-auto border-1 border-success" action="/signup.php" method="post">
+                    <div class="pt-3 pb-3 text-center">
+                        <h1>Signup</h1>
+                    </div>
+					<?php
+					if (isset($_GET["error"])) {
+                        $errorManager = new ErrorManager();
+                        $errorCode = $_GET["error"];
+                        $errorManager->registerErrorManager($errorCode);
+					}
+					?>
+                    <div class="form-floating mb-3 m-auto">
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class="form-floating pb-3 m-auto">
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                        <label for="username">Email</label>
+                    </div>
+                    <div class="form-floating pb-3 m-auto">
+                        <input type="password" class="form-control" name="password" id="password"
+                               placeholder="Password">
+                        <label for="username">Password</label>
+                    </div>
+                    <div class="form-floating pb-3 m-auto">
+                        <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm"
+                               placeholder="Confirm Password">
+                        <label for="username" style="font-size: .8rem">Confirm Password</label>
+                    </div>
+                    <div class="pb-3 m-auto text-center">
+                        <button type="submit" class="btn btn-lg btn-light btn-outline-primary" name="signup">Signup
+                        </button>
+                    </div>
+                    <div class="pb-3 m-auto text-center">
+                        <a href="/login.php" class="fs-6 text-decoration-none link-secondary">Do you have account?</a>
+                    </div>
+                </form>
             </div>
         </div>
-        <!--Load the scripts-->
-        <script src="static/js/bootstrap.bundle.min.js"></script>
     </div>
+    <!--Load the scripts-->
+    <script src="static/js/bootstrap.bundle.min.js"></script>
+</div>
 </body>
 
 </html>
