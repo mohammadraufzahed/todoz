@@ -1,10 +1,12 @@
 <?php
 
-use Todoz\Auth\Login;
+use Todoz\Auth\{Login, Permission};
 use function Todoz\ErrorHandler\loginPage as loginErrorHandller;
 
 require_once __DIR__ . "/vendor/autoload.php";
 
+$permission = new Permission();
+$permission->indexPermission();
 
 if (isset($_POST["login"])) {
     $username = $_POST["username"];

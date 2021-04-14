@@ -1,3 +1,12 @@
+<?php
+
+use Todoz\Auth\Permission;
+
+require_once __DIR__ . "/vendor/autoload.php";
+
+$permission = new Permission();
+$permission->indexPermission();
+?>
 <!doctype html>
 <html lang="en">
 

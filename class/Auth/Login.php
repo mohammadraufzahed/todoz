@@ -49,7 +49,7 @@ class Login
 		// Assign the userId and isAdmin in session and set the login statement true.
 		$_SESSION["userId"] = $this->userId;
 		$_SESSION["isAdmin"] = $this->isAdmin;
-		$_SESSION["isloggedIn"] = true;
+		$_SESSION["isLoggedIn"] = true;
 		// Return if user is logged in successfully.
 		return true;
 	}

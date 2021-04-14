@@ -1,10 +1,12 @@
 <?php
 
-use Todoz\Auth\Register;
+use Todoz\Auth\{Register, Permission};
 use function Todoz\ErrorHandler\signupPage as signupErrorHandller;
 
 require_once __DIR__ . "/vendor/autoload.php";
 
+$permission = new Permission();
+$permission->indexPermission();
 
 if (isset($_POST["signup"])) {
     // Save the users
