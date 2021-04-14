@@ -1,45 +1,51 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Todoz</title>
-    <!--Load the css-->
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <!-- Css files -->
+    <link rel="stylesheet" href="static/css/bulma.min.css">
     <link rel="stylesheet" href="static/css/base.css">
 </head>
 
 <body>
-<div class="container-fluid bg-light w-100 h-100">
-    <div class="w-50 h-auto m-auto pt-5">
-        <div class="row">
-            <div class="col-12">
-                <div class="w-100 d-flex justify-content-center">
-                    <!--Logo image-->
-                    <img src="static/img/icon.png" alt="Icon image" class=" w-50">
-                </div>
+    <!-- Main container -->
+    <div class="container">
+        <!-- Logo -->
+        <div class="columns is-centered">
+            <div class="column is-6 image">
+                <!--Logo image-->
+                <img src="static/img/icon.png" alt="Icon image" class="">
             </div>
         </div>
-        <div class="row text-center">
-            <div class="col-12">
-                <h1 class="fs-1 fw-bold">Todoz</h1>
-                <p class="fs-6">Simple Todo List</p>
+        <!-- Logo -->
+        <!-- Headeing -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-half">
+                <h1 class="title is-1">Todoz</h1>
+                <p class="subtitle is-3">Simple Todo List</p>
+            </div>
+        </div>
+        <!-- Headeing -->
+        <!-- Buttons -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-half">
                 <div>
-                    <a href="/signup.php">
-                        <button class="btn btn-outline-primary">Signup</button>
-                    </a>
-                    <a href="/login.php">
-                        <button class="btn btn-light btn-outline-success">Login</button>
-                    </a>
+                    <div class="card">
+                        <div class="card-footer">
+                            <a href="/signup.php" class="button card-footer-item is-primary is-outlined">Signup</a>
+                            <a href="/login.php" class="button card-footer-item is-success is-outlined">Login</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Buttons -->
     </div>
-</div>
-<!--Load the scripts-->
-<script src="static/js/bootstrap.bundle.min.js"></script>
+    <!-- Main container -->
 </body>
 
 </html>

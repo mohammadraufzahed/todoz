@@ -1,15 +1,20 @@
 <?php
-require_once __DIR__ . "/class/Account/Register.php";
-require __DIR__ . "/class/ErrorManager.php";
+
+use Todoz\Auth\Register;
+use function Todoz\ErrorHandler\signupPage as signupErrorHandller;
+
+require_once __DIR__ . "/vendor/autoload.php";
+
 
 if (isset($_POST["signup"])) {
-	$username = $_POST["username"];
-	$email = $_POST["email"];
-	$password = $_POST["password"];
-	$passwordConfirm = $_POST["passwordConfirm"];
-	$register = new Register($username, $email, $password, $passwordConfirm);
-
-	$register->registerUser();
+    // Save the users
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $passwordConfirm = $_POST["passwordConfirm"];
+    $register = new Register($username, $email, $password, $passwordConfirm);
+    // Register the user.
+    $register->signupTheUser();
 }
 ?>
 <!doctype html>
@@ -18,63 +23,88 @@ if (isset($_POST["signup"])) {
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Register</title>
     <!--Load the css-->
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bulma.min.css">
     <link rel="stylesheet" href="static/css/base.css">
 </head>
 
 <body>
-<div class="container-fluid bg-light w-100 h-100">
-    <div class="row">
-        <div class="col-12">
-            <div class="w-50 h-auto m-auto">
-                <form class="pt-5 m-auto border-1 border-success" action="/signup.php" method="post">
-                    <div class="pt-3 pb-3 text-center">
-                        <h1>Signup</h1>
-                    </div>
-					<?php
-					if (isset($_GET["error"])) {
-                        $errorManager = new ErrorManager();
+    <!-- Main container -->
+    <div class="container">
+        <div class="columns is-centered mt-6">
+            <div class="column is-half has-text-centered">
+                <!-- Signup form -->
+                <form class="" action="/signup.php" method="post">
+                    <!-- Header -->
+                    <h1 class="title is-1">Signup</h1>
+                    <!-- Header -->
+                    <!-- Error box -->
+                    <?php
+                    if (isset($_GET["error"])) {
                         $errorCode = $_GET["error"];
-                        $errorManager->registerErrorManager($errorCode);
-					}
-					?>
-                    <div class="form-floating mb-3 m-auto">
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Username">
-                        <label for="username">Username</label>
+                        signupErrorHandller($errorCode);
+                    }
+                    ?>
+                    <!-- Error box -->
+
+                    <div class="field mb-3">
+                        <label class="label has-text-left" for="username">Username</label>
+                        <div class="control has-icons-left">
+                            <input type="text" class="input" name="username" id="username" placeholder="Username">
+                            <span class="icon is-small is-left">
+                                <i data-feather="user"></i>
+                            </span>
+                        </div>
                     </div>
-                    <div class="form-floating pb-3 m-auto">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                        <label for="username">Email</label>
+                    <div class="field pb-3">
+                        <label class="label has-text-left" for="username">Email</label>
+                        <div class="control has-icons-left">
+                            <input type="email" class="input" name="email" id="email" placeholder="Email">
+                            <span class="icon is-small is-left">
+                                <i data-feather="mail"></i>
+                            </span>
+                        </div>
                     </div>
-                    <div class="form-floating pb-3 m-auto">
-                        <input type="password" class="form-control" name="password" id="password"
-                               placeholder="Password">
-                        <label for="username">Password</label>
+                    <div class="field pb-3">
+                        <label class="label has-text-left" for="username">Password</label>
+                        <div class="control has-icons-left">
+                            <input type="password" class="input" name="password" id="password" placeholder="Password">
+                            <span class="icon is-small is-left">
+                                <i data-feather="lock"></i>
+                            </span>
+                        </div>
                     </div>
-                    <div class="form-floating pb-3 m-auto">
-                        <input type="password" class="form-control" name="passwordConfirm" id="passwordConfirm"
-                               placeholder="Confirm Password">
-                        <label for="username" style="font-size: .8rem">Confirm Password</label>
+                    <div class="field pb-3">
+                        <label class="label has-text-left" for="username">Confirm Password</label>
+                        <div class="control has-icons-left">
+                            <input type="password" class="input" name="passwordConfirm" id="passwordConfirm" placeholder="Confirm Password">
+                            <span class="icon is-small is-left">
+                                <i data-feather="lock"></i>
+                            </span>
+                        </div>
                     </div>
-                    <div class="pb-3 m-auto text-center">
-                        <button type="submit" class="btn btn-lg btn-light btn-outline-primary" name="signup">Signup
+                    <div class="pb-3">
+                        <button type="submit" class="button is-primary is-outlined" name="signup">Signup
                         </button>
                     </div>
-                    <div class="pb-3 m-auto text-center">
-                        <a href="/login.php" class="fs-6 text-decoration-none link-secondary">Do you have account?</a>
+                    <div class="pb-3">
+                        <a href="/login.php" class="text-has-link">Do you have account?</a>
                     </div>
                 </form>
+                <!-- Signup form -->
+
             </div>
         </div>
+        <!-- Main container -->
+        <!--Js files-->
+        <script src="static/js/feather.min.js"></script>
+        <script>
+            feather.replace();
+        </script>
     </div>
-    <!--Load the scripts-->
-    <script src="static/js/bootstrap.bundle.min.js"></script>
-</div>
 </body>
 
 </html>

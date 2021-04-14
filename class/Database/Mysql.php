@@ -1,14 +1,19 @@
 <?php
 
+namespace Todoz\Database;
+
+use \PDO;
+use \PDOException;
+
 /**
- * Database class.
+ * Mysql database class.
  */
-class Database
+class Mysql
 {
-	// Database information.
+	// Mysql database information.
 	private const DB_HOST = "localhost";
 	private const DB_USER = "mohammad";
-	private const DB_PASS = "09351515982Mr@";
+	private const DB_PASS = "mohammad82";
 	private const DB_NAME = "todoz";
 
 	private $dbc;
@@ -16,7 +21,7 @@ class Database
 	private string $error;
 
 	/**
-	 * Database constructor.
+	 * Mysql database constructor.
 	 */
 	public function __construct()
 	{
@@ -92,7 +97,7 @@ class Database
 	}
 
 	/**
-	 * Database destructor.
+	 * Mysql database destructor.
 	 */
 	public function __destruct()
 	{

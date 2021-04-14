@@ -1,0 +1,23 @@
+{
+    "name": "mohammadraufzahed/todoz",
+    "description": "Simple todo manager",
+    "type": "project",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Mohammad Raufzahed",
+            "email": "mohammadraufzahed@protonmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {},
+    "autoload": {
+        "files": [
+            "class/Error/ErrorManager.php"
+        ],
+        "psr-4": {
+            "Todoz\\Auth\\": "class/Auth",
+            "Todoz\\Database\\": "class/Database"
+        }
+    }
+}

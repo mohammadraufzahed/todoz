@@ -1,5 +1,11 @@
 <?php
-require_once(__DIR__ . "/../Database.php");
+
+namespace Todoz\Auth;
+
+use \PDO;
+use \Todoz\Database\Mysql;
+
+require_once __DIR__ . "/../../vendor/autoload.php";
 
 /**
  * Login class.
@@ -21,7 +27,7 @@ class Login
 	{
 		$this->username = trim($username);
 		$this->password = trim($password);
-		$this->conn = new Database();
+		$this->conn = new Mysql();
 	}
 
 	/**
@@ -30,11 +36,11 @@ class Login
 	 */
 	public function doLogin(): bool
 	{
-		if (!$this->verifyLoginStandard()) {
+		if (!$this->verifyDataStandard()) {
 			header("location: /login.php?error=1");
 			die();
 		}
-		if (!$this->verifyLoginDatabase()) {
+		if (!$this->verifyDataInDatabase()) {
 			header("location: /login.php?error=2");
 			die();
 		}
@@ -52,7 +58,7 @@ class Login
 	 * Verify login standard.
 	 * @return bool
 	 */
-	private function verifyLoginStandard(): bool
+	private function verifyDataStandard(): bool
 	{
 		// Review the password and username fields.
 		if (empty($this->username) || empty($this->password)) {
@@ -67,7 +73,7 @@ class Login
 	/**
 	 * Verify the password and username fields in database.
 	 */
-	private function verifyLoginDatabase(): bool
+	private function verifyDataInDatabase(): bool
 	{
 		// Send query to database.
 		$this->conn->query("SELECT `id`, `password`, `isAdmin` FROM `users` WHERE username=:username AND isAccountEnable='Y'");
