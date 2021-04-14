@@ -13,7 +13,8 @@
     "require": {},
     "autoload": {
         "files": [
-            "class/Error/ErrorManager.php"
+            "class/Error/ErrorManager.php",
+            "class/Auth/Logout.php"
         ],
         "psr-4": {
             "Todoz\\Auth\\": "class/Auth",
