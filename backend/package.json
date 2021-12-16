@@ -1,0 +1,27 @@
+{
+  "name": "todoz-backend",
+  "version": "1.0.0",
+  "description": "Todoz API server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohammadraufzahed/todoz.git"
+  },
+  "keywords": [
+    "todo",
+    "todoapp",
+    "react",
+    "hapi",
+    "nextjs",
+    "database"
+  ],
+  "author": "Mohammad Raufzahed <mohammadraufzahed@protonmail.com>",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/mohammadraufzahed/todoz/issues"
+  },
+  "homepage": "https://github.com/mohammadraufzahed/todoz#readme"
+}
