@@ -4,6 +4,8 @@ Todoz is a to-do list app, it has minimal functionality, and will allow you to a
 
 The purpose behind this is learning and it's not ready for production env.
 
+---
+
 ## Features
 
 - User management
