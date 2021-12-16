@@ -25,3 +25,7 @@ The purpose behind this is learning and it's not ready for production env.
   - Add a new to-do item
   - Deleting a to-do item
   - Editing a to-do item
+
+---
+
+# This app is under development, and this readme will be completed in the process of development.
