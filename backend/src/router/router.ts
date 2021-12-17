@@ -12,7 +12,7 @@ const router = {
   register: async (server: Server, options: object): Promise<void> => {
     // Register the sample router
     await server.register({
-      plugin: require("./routes/home.route"),
+      plugin: require("@app/router/routes/home.route"),
     });
   },
 };
