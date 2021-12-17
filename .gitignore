@@ -2,6 +2,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node,react,reactnative,yarn,linux,macos,windows,nextjs,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,react,reactnative,yarn,linux,macos,windows,nextjs,visualstudiocode
 
+# Personal
+
+out/
+
 ### Linux ###
 *~
 
@@ -55,6 +59,7 @@ Temporary Items
 logs
 *.log
 npm-debug.log*
+package-lock.json
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*

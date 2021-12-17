@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "module": "CommonJS",
+    "baseUrl": "./src",
+    "paths": {
+      "@app/controllers/*": ["controllers/*"],
+      "@app/router/*": ["router/*"],
+      "@app/router/routes/*": ["router/routes/*"]
+    },
+    "lib": ["ESNext"],
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "strict": true,
+    "skipLibCheck": true,
+    "sourceMap": true
+  },
+  "exclude": ["node_modules"]
+}
