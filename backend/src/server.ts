@@ -18,6 +18,8 @@ export const init = async (): Promise<Server> => {
     host: "localhost",
     port: process.env.PORT || 8080,
   });
+  // Register the auth strategies
+  await server.register(require("@app/auth/strategies"));
   // Register the router
   await server.register({
     plugin: require("@app/router/router"),

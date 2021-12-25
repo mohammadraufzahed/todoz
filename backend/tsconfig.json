@@ -6,7 +6,9 @@
     "paths": {
       "@app/controllers/*": ["controllers/*"],
       "@app/router/*": ["router/*"],
-      "@app/router/routes/*": ["router/routes/*"]
+      "@app/router/routes/*": ["router/routes/*"],
+      "@app/auth/*": ["auth/*"],
+      "@app/auth/strategies/*": ["auth/strategies/*"]
     },
     "lib": ["ESNext"],
     "moduleResolution": "Node",
