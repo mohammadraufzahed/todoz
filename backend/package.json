@@ -33,10 +33,15 @@
     "@hapi/jwt": "^2.1.0",
     "@prisma/client": "^3.7.0",
     "@types/hapi__jwt": "^2.0.1",
+    "@types/uuid": "^8.3.3",
+    "dotenv": "^10.0.0",
     "fs-extra": "^10.0.0",
     "hapi-auth-jwt2": "^10.2.0",
+    "nanoid": "^3.1.30",
     "pg": "^8.7.1",
-    "typeorm": "^0.2.41"
+    "pg-native": "^3.0.0",
+    "typeorm": "^0.2.41",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/hapi__hapi": "^20.0.10",

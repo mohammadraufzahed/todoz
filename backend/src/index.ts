@@ -1,4 +1,3 @@
 import { init, start } from "./server";
 
-// Start the server
-init().then(() => start());
+init().then(async (): Promise<void> => await start());

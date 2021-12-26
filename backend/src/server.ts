@@ -1,5 +1,6 @@
 import Hapi from "@hapi/hapi";
 import { Server } from "@hapi/hapi";
+import { createDatabaseConnection } from "database";
 
 export let server: Server;
 
@@ -18,6 +19,8 @@ export const init = async (): Promise<Server> => {
     host: "localhost",
     port: process.env.PORT || 8080,
   });
+  // Create the database connection
+  await createDatabaseConnection();
   // Register the auth strategies
   await server.register(require("@app/auth/strategies"));
   // Register the router
@@ -38,9 +41,11 @@ export const init = async (): Promise<Server> => {
  * @returns {void}
  */
 export const start = async (): Promise<void> => {
+  // Log the server
   console.log(
     `API is running at http://${server.settings.host}:${server.settings.port}`
   );
+  // Start the server
   await server.start();
 };
 
