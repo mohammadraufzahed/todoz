@@ -22,6 +22,8 @@ module.exports = {
   target: "node",
   output: {
     path: resolve(__dirname, "dist"),
+    filename: "[name].js",
+    sourceMapFilename: "[name].js.map",
   },
   module: {
     rules: [
