@@ -5,14 +5,17 @@ import { Server } from "@hapi/hapi";
  * @description This plugin will register the routes in the server.
  * @type {object}
  */
-const router = {
+const router: object = {
   name: "router",
   version: "1.0.0",
   once: true,
   register: async (server: Server, options: object): Promise<void> => {
-    // Register the sample router
+    // Register the routes
     await server.register({
-      plugin: require("@app/router/routes/home.route"),
+      plugin: require("@app/router/routes/register.route"),
+      routes: {
+        prefix: "/api",
+      },
     });
   },
 };
