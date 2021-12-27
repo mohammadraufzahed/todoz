@@ -8,7 +8,7 @@ import { Todos } from "./Todos";
  */
 @Entity()
 export class User extends BaseEntity {
-  @PrimaryColumn({ type: "uuid" })
+  @PrimaryColumn({ type: "varchar" })
   id: string;
 
   @Column({ type: "varchar", unique: true })
