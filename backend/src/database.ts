@@ -2,8 +2,6 @@ import { createConnection } from "typeorm";
 import { User } from "@app/schema/User";
 import { Todos } from "@app/schema/Todos";
 
-require("dotenv").config();
-
 /**
  * @name createDatabaseConnection
  * @description Create the connection with database
