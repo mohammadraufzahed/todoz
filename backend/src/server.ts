@@ -26,6 +26,9 @@ export const init = async (): Promise<Server> => {
   // Register the router
   await server.register({
     plugin: require("@app/router/router"),
+    routes: {
+      prefix: "/api",
+    },
   });
   // Return the server
   return server;

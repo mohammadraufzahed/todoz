@@ -13,9 +13,6 @@ const router: object = {
     // Register the routes
     await server.register({
       plugin: require("@app/router/routes/register.route"),
-      routes: {
-        prefix: "/api",
-      },
     });
   },
 };
