@@ -9,7 +9,7 @@
       "@app/router/routes/*": ["router/routes/*"],
       "@app/auth/*": ["auth/*"],
       "@app/auth/strategies/*": ["auth/strategies/*"],
-      "@app/schema/*": ["schema/*"]
+      "@app/schema/*": ["schema/*"],
     },
     "lib": ["ESNext"],
     "moduleResolution": "Node",
