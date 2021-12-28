@@ -15,6 +15,12 @@ const registerRoute: object = {
       path: "/register",
       method: "POST",
       handler: RegisterController.post,
+      options: {
+        auth: {
+          strategy: "login",
+          mode: "optional",
+        },
+      },
     });
   },
 };

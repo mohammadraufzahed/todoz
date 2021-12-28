@@ -11,9 +11,11 @@ const router: object = {
   once: true,
   register: async (server: Server, options: object): Promise<void> => {
     // Register the routes
-    await server.register({
-      plugin: require("@app/router/routes/register.route"),
-    });
+    await server.register([
+      {
+        plugin: require("@app/router/routes/register.route"),
+      },
+    ]);
   },
 };
 
