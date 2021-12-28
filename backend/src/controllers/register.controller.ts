@@ -7,12 +7,14 @@ import md5 from "md5";
 import bcrypt from "bcryptjs";
 
 export namespace RegisterController {
-  export async function post(req: Request) {
-    if (req.auth.isAuthenticated) {
-      return {
-        status: "error",
-        message: "user already authenticated",
-      };
+  export async function post(req: Request, h: ResponseToolkit) {
+    if (!req.auth.isAuthenticated) {
+      return h
+        .response({
+          status: "error",
+          message: "user already authenticated",
+        })
+        .code(403);
     }
     // Get the database connection
     const connection = getConnection();
@@ -27,10 +29,12 @@ export namespace RegisterController {
     const { error, value } = requestSchema.validate(req.payload);
     // if has error return the error
     if (error) {
-      return {
-        status: "error",
-        message: error.message,
-      };
+      return h
+        .response({
+          status: "error",
+          message: error.message,
+        })
+        .code(406);
     }
     // Check the username or email exists
     const users = await repository
@@ -41,10 +45,12 @@ export namespace RegisterController {
     // Check the length
     if (users) {
       // Return the error
-      return {
-        status: "error",
-        message: "there are users with the same username or email",
-      };
+      return h
+        .response({
+          status: "error",
+          message: "there are users with the same username or email",
+        })
+        .code(500);
     }
     // Hash the password
     const salt = await bcrypt.genSalt(10);
@@ -61,10 +67,12 @@ export namespace RegisterController {
       // Save the users
       await user.save();
     } catch (error) {
-      return {
-        status: "error",
-        message: "Something goes wrong",
-      };
+      return h
+        .response({
+          status: "error",
+          message: "Something goes wrong",
+        })
+        .code(504);
     }
 
     return {
