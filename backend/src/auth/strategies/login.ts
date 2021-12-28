@@ -44,7 +44,7 @@ exports.plugin = {
             isValid: false,
           };
         }
-        // retirn the value
+        // return the value
         return {
           isValid: true,
           credentials: user,
