@@ -6,7 +6,7 @@ import { Todos } from "./Todos";
  * @class
  * @classdesc User Entity
  */
-@Entity()
+@Entity("user")
 export class User extends BaseEntity {
   @PrimaryColumn({ type: "varchar" })
   id: string;
