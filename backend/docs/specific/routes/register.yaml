@@ -1,0 +1,84 @@
+"/register":
+  post:
+    tags:
+      - register
+    summary: register the new user in the database
+    consumes:
+      - application/json
+    parameters:
+      - in: body
+        name: body
+        description: register endpoint needed an information object of the user
+        required: true
+        schema:
+          type: object
+          required:
+            - username
+            - password
+            - email
+          properties:
+            username:
+              type: string
+              example: jhonedoe
+            password:
+              type: string
+              example: jhonedoestrongpassword
+            email:
+              type: string
+              example: jhonedoe@email.com
+    responses:
+      "200":
+        description: successfully user added
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: ok
+            message:
+              type: string
+              example: the user account created successfully
+      "403":
+        description: user already authenticated
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: error
+            message:
+              type: string
+              example: user already authenticated
+      "406":
+        description: unvalidate request data
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: error
+            message:
+              type: string
+              example: '"email" must be a valid email'
+      "500":
+        description: there are users with the same username or email
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: error
+            message:
+              type: string
+              example: there are users with the same username or email
+      "504":
+        description: something goes wrong
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: error
+            message:
+              type: string
+              example: Something goes wrong

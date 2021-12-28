@@ -1,0 +1,21 @@
+---
+swagger: "2.0"
+info:
+  description:
+    This is the API of the Todoz app, This part of the project will have
+    full responsibility for the functionality of the apps.
+  version: 1.0.0
+  title: Todoz API
+  contact:
+    email: mohammadraufzahed@protonmail.com
+host: localhost:8080
+basePath: "/api"
+tags:
+  - name: register
+    description: Register Endpoint
+schemes:
+  - https
+  - http
+paths: !!import/payload
+  paths:
+    - routes/register.yaml

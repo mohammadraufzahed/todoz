@@ -4,3 +4,4 @@ node_modules
 # Packages lock
 package-lock.json
 yarn.lock
+index.out.yaml
