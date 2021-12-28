@@ -21,6 +21,8 @@ export const init = async (): Promise<Server> => {
   });
   // Create the database connection
   await createDatabaseConnection();
+  // register jwt
+  await server.register(require("hapi-auth-jwt2"));
   // Register the auth strategies
   await server.register(require("@app/auth/strategies"));
   // Register the router
