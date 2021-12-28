@@ -7,15 +7,10 @@ import md5 from "md5";
 import bcrypt from "bcryptjs";
 
 export namespace RegisterController {
-  export async function post(req: Request, h: ResponseToolkit) {
-    if (req.auth.isAuthenticated) {
-      return h
-        .response({
-          status: "error",
-          message: "user already authenticated",
-        })
-        .code(403);
-    }
+  export async function post(
+    req: Request,
+    h: ResponseToolkit
+  ): Promise<object> {
     // Get the database connection
     const connection = getConnection();
     const repository = connection.getRepository(User);
