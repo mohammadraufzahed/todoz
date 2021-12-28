@@ -8,7 +8,7 @@ import bcrypt from "bcryptjs";
 
 export namespace RegisterController {
   export async function post(req: Request, h: ResponseToolkit) {
-    if (!req.auth.isAuthenticated) {
+    if (req.auth.isAuthenticated) {
       return h
         .response({
           status: "error",
