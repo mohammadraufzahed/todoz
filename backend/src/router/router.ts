@@ -15,6 +15,9 @@ const router: object = {
       {
         plugin: require("@app/router/routes/register.route"),
       },
+      {
+        plugin: require("@app/router/routes/user.route"),
+      },
     ]);
   },
 };
