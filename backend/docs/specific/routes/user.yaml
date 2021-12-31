@@ -1,0 +1,38 @@
+"/user":
+  get:
+    security:
+      - Bearer: []
+    tags:
+      - user
+    summary: Return the user information
+    consumes:
+      - application/json
+    responses:
+      200:
+        description: User information
+        schema:
+          type: object
+          properties:
+            username:
+              type: string
+              example: jhonedoe
+            email:
+              type: string
+              example: jhonedoeemail@email.com
+            photo:
+              type: string
+              example: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+      401:
+        description: unauthorized request
+        schema:
+          type: object
+          properties:
+            statusCode:
+              type: integer
+              example: 401
+            error:
+              type: string
+              example: Unauthorized
+            message:
+              type: string
+              example: Missing authentication
