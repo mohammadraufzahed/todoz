@@ -4,6 +4,7 @@ declare global {
       PORT: string | number;
       DATABASE_URL: string;
       LOGIN_KEY: string;
+      DEVELOPMENT: boolean;
     }
   }
 }

@@ -20,7 +20,7 @@ export const createDatabaseConnection = async (): Promise<void> => {
     logging: false,
     entities: [User, Todos],
     extra: {
-      ssl: true,
+      ssl: process.env.DEVELOPMENT ? false : true,
     },
   });
 };
