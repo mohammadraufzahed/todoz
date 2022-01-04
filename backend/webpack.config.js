@@ -19,9 +19,7 @@ module.exports = {
     modules: [resolve(__dirname, "node_modules")],
     plugins: [new TsconfigPathsPlugin()],
   },
-  plugins: [
-    new webpack.IgnorePlugin({resourceRegExp: /^pg-native$/})
-  ],
+  plugins: [new webpack.IgnorePlugin({ resourceRegExp: /^pg-native$/ })],
   target: "node",
   output: {
     path: resolve(__dirname, "dist"),
