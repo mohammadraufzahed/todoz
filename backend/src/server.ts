@@ -16,7 +16,7 @@ export let server: Server;
 export const init = async (): Promise<Server> => {
   // Initilize the server
   server = Hapi.server({
-    host: "localhost",
+    host: "0.0.0.0",
     port: process.env.PORT || 8080,
   });
   // Create the database connection
