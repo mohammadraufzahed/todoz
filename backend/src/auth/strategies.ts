@@ -8,7 +8,7 @@ exports.plugin = {
   register: async (server: Server, options: ServerOptions) => {
     await server.register([
       {
-        plugin: require("./strategies/login"),
+        plugin: require("./strategies/api"),
       },
     ]);
   },

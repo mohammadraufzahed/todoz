@@ -2,52 +2,53 @@ import { User } from "@app/schema/User";
 import { Request, ResponseToolkit, Server, ServerOptions } from "@hapi/hapi";
 import { compare } from "bcryptjs";
 import Joi from "joi";
+import moment from "moment";
 import { getConnection } from "typeorm";
 
 exports.plugin = {
   name: "Login strategy",
   version: "1.0.0",
   register: async (server: Server, options: ServerOptions): Promise<void> => {
-    server.auth.strategy("login", "jwt", {
+    server.auth.strategy("api", "jwt", {
       key: process.env.LOGIN_KEY,
-      validate: async (decoded: any, request: Request, h: ResponseToolkit) => {
-        // Get the connection and data repository
-        const connection = getConnection();
-        const repository = connection.getRepository(User);
-        // Validate the request payload
+      validate: async (
+        decoded: any,
+        request: Request,
+        h: ResponseToolkit
+      ): Promise<object | void> => {
+        // Generate the date
+        const date = moment(new Date());
+        // Validate the request from the decoded data
         const requestSchema = Joi.object({
           username: Joi.string().alphanum().min(4).max(20).required(),
-          password: Joi.string().min(8).required(),
+          email: Joi.string().email().required(),
+          ip: Joi.string().required(),
+          expire: Joi.string().required(),
+          iat: Joi.number(),
         });
-        // Validate decode
+        // Validate the decoded data
         const { error, value } = requestSchema.validate(decoded);
         if (error) {
           return {
             isValid: false,
           };
         }
-        // Find the user
-        const user = await repository.findOne({
-          where: {
-            username: value.username,
-          },
-        });
-        // If user was not exists
-        if (!user) {
-          return {
-            isvalid: false,
-          };
-        }
-        // Comapre the passwords
-        if (!(await compare(value.password, user.password))) {
+        // Check the request IP
+        if (request.info.remoteAddress != value.ip) {
           return {
             isValid: false,
           };
         }
-        // return the value
+        // Check the expire date of token
+        if (date.isSameOrBefore(new Date(value.expire).getTime())) {
+          return {
+            isValid: false,
+          };
+        }
+        // if everything was ok accept the auth.
         return {
           isValid: true,
-          credentials: user,
+          credentials: value,
         };
       },
     });
