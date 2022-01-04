@@ -13,7 +13,7 @@ const router: object = {
     // Register the routes
     await server.register([
       {
-        plugin: require("@app/router/routes/register.route"),
+        plugin: require("@app/router/routes/auth.route"),
       },
       {
         plugin: require("@app/router/routes/user.route"),
