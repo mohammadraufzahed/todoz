@@ -1,7 +1,7 @@
-"/register":
+"/auth":
   post:
     tags:
-      - register
+      - Authenticate
     summary: register the new user in the database
     consumes:
       - application/json
@@ -82,3 +82,50 @@
             message:
               type: string
               example: Something goes wrong
+  get:
+    tags:
+      - Authenticate
+    summary: authentiacte the user
+    consumes:
+      - application/json
+    parameters:
+      - in: path
+        name: username
+        schema:
+          type: string
+          example: jhondoe
+        required: true
+        description: Username of the user
+      - in: path
+        name: password
+        schema:
+          type: string
+          example: jhonedoepassword
+        required: true
+        description: Password of the user
+    responses:
+      200:
+        description: User logged in successfully
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: object
+            message:
+              type: string
+              example: user logged in successfully
+            token:
+              type: string
+              example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+      401:
+        description: Authentication faild
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: faild
+            message:
+              type: string
+              example: Params are not valid

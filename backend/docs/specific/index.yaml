@@ -11,8 +11,8 @@ info:
 host: localhost:8080
 basePath: "/api"
 tags:
-  - name: register
-    description: Register Endpoint
+  - name: Authenticate
+    description: Authenticate Endpoint
   - name: user
     description: User Management Endpoint
 schemes:
@@ -26,5 +26,5 @@ securityDefinitions:
 
 paths: !!import/payload
   paths:
-    - routes/register.yaml
+    - routes/authenticate.yaml
     - routes/user.yaml
