@@ -15,12 +15,12 @@ export const createDatabaseConnection = async (): Promise<void> => {
   // Create the database connection
   await createConnection({
     type: "postgres",
-    host: process.env.DATABASE_HOST,
-    port: 5432,
-    database: process.env.DATABASE_NAME,
-    username: process.env.DATABASE_USER,
-    password: process.env.DATABASE_PASSWORD,
+    url: process.env.DATABASE_URL,
     synchronize: true,
+    logging: false,
     entities: [User, Todos],
+    extra: {
+      ssl: true,
+    },
   });
 };
