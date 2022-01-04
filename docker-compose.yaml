@@ -1,0 +1,31 @@
+services:
+  # Database service
+  db:
+    image: postgres:14-alpine
+    networks:
+      - database_network
+    volumes:
+      - database_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: todoz
+      POSTGRES_PASSWORD: todozpassword
+      POSTGRES_DB: todoz
+    restart: always
+  backend:
+    build: ./backend/
+    image: backend
+    networks:
+      - database_network
+    depends_on:
+      - db
+    ports:
+      - 8080:8080
+    environment:
+      DATABASE_URL: postgres://todoz:todozpassword@db:5432/todoz
+      LOGIN_KEY: veryStrongKey
+      DEVELOPMENT: "true"
+    restart: always
+networks:
+  database_network:
+volumes:
+  database_volume:
