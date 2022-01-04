@@ -11,7 +11,7 @@ exports.plugin = {
       handler: UserController.get,
       options: {
         auth: {
-          strategy: "login",
+          strategy: "api",
           mode: "required",
         },
       },
