@@ -98,12 +98,9 @@ export namespace AuthController {
    * @async
    * @param {Request} req
    * @param {ResponseToolkit} h
-   * @returns {Promise<loginReturn>}
+   * @returns {Promise<object>}
    */
-  export async function get(
-    req: Request,
-    h: ResponseToolkit
-  ): Promise<loginReturn> {
+  export async function get(req: Request, h: ResponseToolkit): Promise<object> {
     // Get the connection and data repository
     const connection = getConnection();
     const repository = connection.getRepository(User);
@@ -115,10 +112,12 @@ export namespace AuthController {
     // Validate decode
     const { error, value } = requestSchema.validate(req.query);
     if (error) {
-      return {
-        status: "faild",
-        message: "Params are not valid",
-      };
+      return h
+        .response({
+          status: "faild",
+          message: "Params are not valid",
+        })
+        .code(401);
     }
     // Find the user
     const user = await repository.findOne({
@@ -128,37 +127,37 @@ export namespace AuthController {
     });
     // If user was not exists
     if (!user) {
-      return {
-        status: "faild",
-        message: "The User not found",
-      };
+      return h
+        .response({
+          status: "faild",
+          message: "The User not found",
+        })
+        .code(401);
     }
     // Comapre the passwords
     if (!(await compare(value.password, user.password))) {
-      return {
-        status: "faild",
-        message: "The password is not correct",
-      };
+      return h
+        .response({
+          status: "faild",
+          message: "The password is not correct",
+        })
+        .code(401);
     }
     // return the value
-    return {
-      status: "ok",
-      message: "successfully logged in",
-      token: JWTSign(
-        {
-          username: user.username,
-          email: user.email,
-          ip: req.info.remoteAddress,
-          expire: (new Date().getTime() + 1).toString(),
-        },
-        process.env.LOGIN_KEY
-      ),
-    };
+    return h
+      .response({
+        status: "ok",
+        message: "user logged in successfully",
+        token: JWTSign(
+          {
+            username: user.username,
+            email: user.email,
+            ip: req.info.remoteAddress,
+            expire: (new Date().getTime() + 1).toString(),
+          },
+          process.env.LOGIN_KEY
+        ),
+      })
+      .code(200);
   }
 }
-
-type loginReturn = {
-  status: "ok" | "faild";
-  message: string;
-  token?: string;
-};
