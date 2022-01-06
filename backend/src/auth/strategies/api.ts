@@ -16,6 +16,8 @@ exports.plugin = {
         request: Request,
         h: ResponseToolkit
       ): Promise<object | void> => {
+        // get database connection
+        const repository = getConnection().getRepository(User);
         // Generate the date
         const date = moment(new Date());
         // Validate the request from the decoded data
@@ -33,6 +35,20 @@ exports.plugin = {
             isValid: false,
           };
         }
+        // Check user exists or not
+        const { username, email } = value;
+        const userStatus = await repository
+          .findAndCount({
+            where: {
+              username,
+              email,
+            },
+          })
+          .then((data) => data[1]);
+        if (!userStatus)
+          return {
+            isValid: false,
+          };
         // Check the request IP
         if (request.info.remoteAddress != value.ip) {
           return {
