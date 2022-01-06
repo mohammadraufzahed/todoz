@@ -31,6 +31,8 @@ services:
     build: 
       context: ./backend/
       dockerfile: development.dockerfile
+    depends_on:
+      - db
     networks:
       - database_network
     ports:
