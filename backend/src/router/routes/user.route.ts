@@ -16,5 +16,16 @@ exports.plugin = {
         },
       },
     });
+    server.route({
+      method: "PUT",
+      path: "/user",
+      handler: UserController.put,
+      options: {
+        auth: {
+          strategy: "api",
+          mode: "required",
+        },
+      },
+    });
   },
 };
