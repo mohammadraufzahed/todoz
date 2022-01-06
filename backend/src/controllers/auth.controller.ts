@@ -1,4 +1,4 @@
-import { Request, ResponseToolkit, Server } from "@hapi/hapi";
+import { Request, ResponseToolkit, ResponseValue, Server } from "@hapi/hapi";
 import { getConnection } from "typeorm";
 import Joi from "joi";
 import { User } from "@app/schema/User";
@@ -20,12 +20,12 @@ export namespace AuthController {
    * @async
    * @param {Request} req
    * @param {ResponseToolkit} h
-   * @returns {Promise<object>}
+   * @returns {Promise<ResponseValue>}
    */
   export async function post(
     req: Request,
     h: ResponseToolkit
-  ): Promise<object> {
+  ): Promise<ResponseValue> {
     // Get the database connection
     const connection = getConnection();
     const repository = connection.getRepository(User);
@@ -98,9 +98,12 @@ export namespace AuthController {
    * @async
    * @param {Request} req
    * @param {ResponseToolkit} h
-   * @returns {Promise<object>}
+   * @returns {Promise<ResponseValue>}
    */
-  export async function get(req: Request, h: ResponseToolkit): Promise<object> {
+  export async function get(
+    req: Request,
+    h: ResponseToolkit
+  ): Promise<ResponseValue> {
     // Get the connection and data repository
     const connection = getConnection();
     const repository = connection.getRepository(User);
