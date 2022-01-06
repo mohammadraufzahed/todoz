@@ -71,6 +71,11 @@ export namespace UserController {
           })
           .code(504);
       });
-    return "true";
+    return h
+      .response({
+        status: "ok",
+        message: "password changed successfully",
+      })
+      .code(200);
   }
 }
