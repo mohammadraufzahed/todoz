@@ -7,6 +7,7 @@ RUN apk update && \
 # Define the working directory
 WORKDIR /usr/src/app
 # Start the service
-CMD ["bash"]
+CMD ["tmux"]
 # Expose the port
 EXPOSE 8080
+EXPOSE 3000
