@@ -13,7 +13,7 @@ basePath: "/api"
 tags:
   - name: Authenticate
     description: Authenticate Endpoint
-  - name: user
+  - name: User
     description: User Management Endpoint
 schemes:
   - https

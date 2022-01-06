@@ -3,10 +3,8 @@
     security:
       - Bearer: []
     tags:
-      - user
+      - User
     summary: Return the user information
-    consumes:
-      - application/json
     responses:
       200:
         description: User information
@@ -36,3 +34,57 @@
             message:
               type: string
               example: Missing authentication
+  put:
+    summary: Update the user password
+    tags:
+      - User
+    security:
+      - Bearer: []
+    consumes:
+      - application/json
+    parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          required:
+            - password
+          properties:
+            password:
+              type: string
+              example: jhonedoenewpassword
+    responses:
+      200:
+        description: Password changed successfully
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: ok
+            message:
+              type: string
+              example: password changed successfully
+      406:
+        description: Password is missing in the request body
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: failed
+            message:
+              type: string
+              example: password is required
+      504:
+        description: Something goes wrong
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: failed
+            message:
+              type: string
+              example: something goes wrong
