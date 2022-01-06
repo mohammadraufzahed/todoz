@@ -7,7 +7,8 @@ import {
 } from "@hapi/hapi";
 import { genSalt, hash } from "bcryptjs";
 import Joi from "joi";
-import { DeleteResult, getConnection } from "typeorm";
+import md5 from "md5";
+import { getConnection } from "typeorm";
 
 export namespace UserController {
   /**
@@ -20,8 +21,25 @@ export namespace UserController {
     req: Request,
     h: ResponseToolkit
   ): Promise<ResponseValue> {
+    // Get database connection
+    const repository = getConnection().getRepository(User);
     // Collect the user information from credentials
-    const user = req.auth.credentials;
+    const credentials = req.auth.credentials;
+    // Get the user
+    const user = await repository.findOne({
+      where: {
+        ...credentials.user,
+      },
+    });
+    // If user not found return error
+    if (!user) {
+      return h
+        .response({
+          status: "failed",
+          message: "User not found",
+        })
+        .code(401);
+    }
     // Return the specific information
     return h.response({
       username: user.username,
@@ -43,7 +61,9 @@ export namespace UserController {
     const repository = getConnection().getRepository(User);
     // Validate the data
     const requestSchema = Joi.object({
-      password: Joi.string().min(8).required(),
+      username: Joi.string().alphanum().min(4).max(20),
+      password: Joi.string().min(8),
+      email: Joi.string().email(),
     });
     const { error, value } = requestSchema.validate(req.payload);
     if (error) {
@@ -56,15 +76,29 @@ export namespace UserController {
     }
     // Save the username
     const authUsername: string = <string>req.auth.credentials.username;
-    // Hash the password
-    const salt = await genSalt(10);
-    const passwordHash = await hash(value.password, salt);
+    const userData: CustomObject = {};
+    // Pass the data to it
+    // Pass the password
+    if (value.password) {
+      // Hash the password
+      const salt = await genSalt(10);
+      userData["password"] = await hash(value.password, salt);
+    }
+    // Pass the username
+    if (value.username) userData["username"] = value.username;
+    // Pass the email
+    if (value.email) {
+      userData["email"] = value.email;
+      userData["picture_url"] = `https://www.gravatar.com/avatar/${md5(
+        value.email
+      )}`;
+    }
     // Update the user
     const user = await repository
       .update(
         { username: authUsername },
         {
-          password: passwordHash,
+          ...userData,
         }
       )
       .catch((error) => {
@@ -79,7 +113,7 @@ export namespace UserController {
     return h
       .response({
         status: "ok",
-        message: "password changed successfully",
+        message: "User updated successfully",
       })
       .code(200);
   }
