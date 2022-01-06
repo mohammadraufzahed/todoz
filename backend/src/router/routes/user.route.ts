@@ -27,5 +27,16 @@ exports.plugin = {
         },
       },
     });
+    server.route({
+      method: "DELETE",
+      path: "/user",
+      handler: UserController.del,
+      options: {
+        auth: {
+          strategy: "api",
+          mode: "required",
+        },
+      },
+    });
   },
 };

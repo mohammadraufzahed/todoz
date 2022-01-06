@@ -1,8 +1,13 @@
 import { User } from "@app/schema/User";
-import { Request, ResponseToolkit, ResponseValue } from "@hapi/hapi";
+import {
+  Request,
+  ResponseObject,
+  ResponseToolkit,
+  ResponseValue,
+} from "@hapi/hapi";
 import { genSalt, hash } from "bcryptjs";
 import Joi from "joi";
-import { getConnection } from "typeorm";
+import { DeleteResult, getConnection } from "typeorm";
 
 export namespace UserController {
   /**
@@ -77,5 +82,29 @@ export namespace UserController {
         message: "password changed successfully",
       })
       .code(200);
+  }
+  export async function del(
+    req: Request,
+    h: ResponseToolkit
+  ): Promise<ResponseValue> {
+    // Get user credentials
+    const credentials = req.auth.credentials;
+    // Get User repository
+    const repository = getConnection().getRepository(User);
+    const deleteResult = await repository.delete({
+      ...credentials.user,
+    });
+    // If user was not found return error
+    if (!deleteResult.affected)
+      return h
+        .response({
+          status: "faild",
+          message: "User not found",
+        })
+        .code(401);
+    return {
+      status: "ok",
+      message: "User deleted successfully",
+    };
   }
 }
