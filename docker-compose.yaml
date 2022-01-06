@@ -12,14 +12,31 @@ services:
       POSTGRES_DB: todoz
     restart: always
   backend:
-    build: ./backend/
-    image: backend
+    build: 
+      context: ./backend/
+      dockerfile: Dockerfile
+    image: todoz_backend
     networks:
       - database_network
     depends_on:
       - db
     ports:
       - 8080:8080
+    environment:
+      DATABASE_URL: postgres://todoz:todozpassword@db:5432/todoz
+      LOGIN_KEY: veryStrongKey
+      DEVELOPMENT: "true"
+    restart: always
+  backend_development:
+    build: 
+      context: ./backend/
+      dockerfile: development.dockerfile
+    networks:
+      - database_network
+    ports:
+      - 8080:8080
+    volumes:
+      - ./backend/:/usr/src/app
     environment:
       DATABASE_URL: postgres://todoz:todozpassword@db:5432/todoz
       LOGIN_KEY: veryStrongKey
