@@ -6,23 +6,23 @@ The purpose behind this is learning and it's not ready for production env.
 
 ## Features
 
-- User management
-  - Adding a new user
-  - Limiting the user
-  - Delete a user
-- User authentication
-  - User registration
-  - User login
-  - User logout
-- User profile
-- Settings
-  - Edit the account information
-  - Changing the account password
-  - Deleting the account
-- To-do list management
-  - Add a new to-do item
-  - Deleting a to-do item
-  - Editing a to-do item
+- User management []
+  - Adding a new user [x]
+  - Limiting the user []
+  - Delete a user [x]
+- User authentication []
+  - User registration [x]
+  - User login [x]
+  - User logout []
+- User profile []
+- Settings []
+  - Edit the account information [x]
+  - Changing the account password [x]
+  - Deleting the account [x]
+- To-do list management []
+  - Add a new to-do item []
+  - Deleting a to-do item []
+  - Editing a to-do item []
 
 ## Main architecture
 
