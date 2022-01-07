@@ -18,6 +18,9 @@ const router: object = {
       {
         plugin: require("@app/router/routes/user.route"),
       },
+      {
+        plugin: require("@app/router/routes/todo.route"),
+      },
     ]);
   },
 };

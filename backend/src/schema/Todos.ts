@@ -8,7 +8,7 @@ import { User } from "@app/schema/User";
  */
 @Entity("todos")
 export class Todos extends BaseEntity {
-  @PrimaryColumn({ type: "uuid", unique: true })
+  @PrimaryColumn({ type: "varchar", unique: true })
   id: string;
 
   @Column({ type: "text" })
