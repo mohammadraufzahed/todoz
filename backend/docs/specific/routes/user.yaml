@@ -1,4 +1,4 @@
-"/user":
+/user:
   get:
     security:
       - Bearer: []
@@ -19,7 +19,7 @@
               example: jhonedoeemail@email.com
             photo:
               type: string
-              example: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"
+              example: https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50
       401:
         description: unauthorized request
         schema:
@@ -35,7 +35,7 @@
               type: string
               example: Missing authentication
   put:
-    summary: Update the user password
+    summary: Update the user information
     tags:
       - User
     security:
@@ -48,15 +48,19 @@
         required: true
         schema:
           type: object
-          required:
-            - password
           properties:
+            username:
+              type: string
+              example: jhonedoe
+            email:
+              type: string
+              example: jhonedoe@email.com
             password:
               type: string
               example: jhonedoenewpassword
     responses:
       200:
-        description: Password changed successfully
+        description: User updated successfully
         schema:
           type: object
           properties:
@@ -65,9 +69,9 @@
               example: ok
             message:
               type: string
-              example: password changed successfully
+              example: User updated successfully
       406:
-        description: Password is missing in the request body
+        description: Something are missing in the request body
         schema:
           type: object
           properties:
@@ -88,3 +92,43 @@
             message:
               type: string
               example: something goes wrong
+  delete:
+    summary: Delete the user account
+    tags:
+      - User
+    security:
+      - Bearer: []
+    consumes:
+      - application/json
+    responses:
+      200:
+        description: User deleted successfully
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              example: ok
+            message:
+              type: string
+              example: User deleted successfully
+      401:
+        description: Your not authenticated
+        schema:
+          type: object
+          properties:
+            statusCode:
+              type: integer
+              example: 401
+            error:
+              type: string
+              example: Unauthorized
+            message:
+              type: string
+              example: Invalid credentials
+            attributes:
+              type: object
+              properties:
+                error:
+                  type: string
+                  example: Invalid credentials

@@ -128,14 +128,6 @@ export namespace UserController {
     const deleteResult = await repository.delete({
       ...credentials.user,
     });
-    // If user was not found return error
-    if (!deleteResult.affected)
-      return h
-        .response({
-          status: "faild",
-          message: "User not found",
-        })
-        .code(401);
     return {
       status: "ok",
       message: "User deleted successfully",
