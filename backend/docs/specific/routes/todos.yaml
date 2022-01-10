@@ -1,0 +1,59 @@
+"/todos":
+  post:
+    tags:
+      - Todos
+    summary: Add the new todo
+    consumes:
+      - application/json
+    security:
+      - Bearer: []
+    parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          type: object
+          required:
+            - title
+          properties:
+            title:
+              type: string
+              example: Going to gym
+            description:
+              type: string
+              example: I must go to the gym and make my self a better person
+    responses:
+      200:
+        description: Todo created successfully
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              value: ok
+            message:
+              type: string
+              value:
+                todo created successfully
+      406:
+        description: The request body is not valid
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              value: failed
+            message:
+              type: string
+              example: Title must be 4 character
+      504:
+        description: Something goes wrong
+        schema:
+          type: object
+          properties:
+            status:
+              type: string
+              value: failed
+            message:
+              type: string
+              value: something goes wrong
