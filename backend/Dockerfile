@@ -1,5 +1,5 @@
 # Define the base image
-FROM node:lts-alpine
+FROM node:16-alpine
 # Update the os
 RUN apk update && \
     apk upgrade

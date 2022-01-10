@@ -1,6 +1,11 @@
 services:
   # Database service
   db:
+    profiles: 
+      - backend-development
+      - development
+      - production
+      - backend-production
     image: postgres:14-alpine
     networks:
       - database_network
@@ -12,6 +17,9 @@ services:
       POSTGRES_DB: todoz
     restart: always
   backend:
+    profiles:
+      - production
+      - backend-production
     build: 
       context: ./backend/
       dockerfile: Dockerfile
@@ -28,6 +36,9 @@ services:
       DEVELOPMENT: "true"
     restart: always
   backend_development:
+    profiles: 
+      - backend-development
+      - development
     build: 
       context: ./backend/
       dockerfile: development.dockerfile
