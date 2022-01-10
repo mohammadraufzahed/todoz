@@ -4,4 +4,4 @@ dist
 docs
 uml
 Dockerfile
-*.dockerfile
+development.dockerfile
