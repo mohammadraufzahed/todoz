@@ -20,7 +20,7 @@ The purpose behind this is learning and it's not ready for production env.
   - Changing the account password [x]
   - Deleting the account [x]
 - To-do list management []
-  - Add a new to-do item []
+  - Add a new to-do item [x]
   - Deleting a to-do item []
   - Editing a to-do item []
 
