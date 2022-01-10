@@ -1,10 +1,10 @@
-# Todoz
+# Todoz 📚
 
 Todoz is a to-do list app, it has minimal functionality, and will allow you to access your to-do list via mobile or website.
 
 The purpose behind this is learning and it's not ready for production env.
 
-## Features
+## Features ⭐
 
 - User management []
   - Adding a new user [x]
@@ -24,13 +24,13 @@ The purpose behind this is learning and it's not ready for production env.
   - Deleting a to-do item []
   - Editing a to-do item []
 
-## Main architecture
+## Main architecture 🖥️
 
 This is the main architecture of the app and it may change over time.
 
 ![Main architecture design](diagrams/mainArchitecture.png)
 
-## Install the requirements
+## Install the requirements 🍳
 
 First of all, we need to install docker and docker-compose in your system. for installation guidelines you can visit the official documentation of docker.
 
@@ -38,7 +38,7 @@ First of all, we need to install docker and docker-compose in your system. for i
 
 after you installed the docker and docker-compose successfully, you can safely go to the next levels
 
-## Development environment
+## Development environment 👨‍💻
 
 You can enter into the development environment with the commands below:
 
@@ -62,7 +62,7 @@ $ docker-compose down
 $ docker-compose down --volumes
 ```
 
-## Production environment
+## Production environment 🚀
 
 To run all of the services you need to access and run the website and mobile app you can run the commands below:
 
