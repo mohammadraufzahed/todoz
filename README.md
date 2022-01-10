@@ -39,16 +39,43 @@ First of all, we need to install docker and docker-compose in your system. for i
 after you installed the docker and docker-compose successfully, you can safely go to the next levels
 
 ## Development environment
-you can enter to the development environment with the commands below:
+
+You can enter into the development environment with the commands below:
 
 ```bash
-# Build the docker images
-$ docker-compose build
+# Build the docker images needed
+$ docker-compose --profile development build
 
-# Enter in the backend development environment
+# Enter into the backend development environment
+# Port 3000 for the api documention
+# And port 8080 for the rest api
 $ docker-compose run --rm -p 3000:3000 -p 8080:8080 backend_development
+```
+
+After exiting from the development environment, run the below commands to stop all of the services:
+
+```bash
+# Stop all of the services
+$ docker-compose down
+
+# if you want to delete the volumes to
+$ docker-compose down --volumes
+```
+
+## Production environment
+
+To run all of the services you need to access and run the website and mobile app you can run the commands below:
+
+> <span style="color:red;">Note:</span> This environment is for local and if you want to deploy it you must integrate it with the specific options that the service provider requires.
+
+```bash
+# Building the images
+$ docker-compose --profile production build
+
+# Start the services
+$ docker-compose --profile production up -d
 ```
 
 ---
 
-> <span style="color:red;">Note: </span>This app is under development, and this readme will be completed in the process of development.
+> <span style="color:red;">Note:</span> This app is under development, and this readme will be completed in the process of development.

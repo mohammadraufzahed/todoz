@@ -4,4 +4,5 @@ dist
 docs
 uml
 Dockerfile
+README.md
 development.dockerfile
