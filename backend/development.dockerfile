@@ -9,6 +9,8 @@ ENV SHELL=/usr/bin/fish
 WORKDIR /usr/src/app
 # Start the service
 CMD ["tmux"]
+# Update the npm
+RUN npm i -g npm
 # Expose the port
 EXPOSE 8080
 EXPOSE 3000
