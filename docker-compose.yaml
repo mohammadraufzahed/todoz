@@ -35,27 +35,6 @@ services:
       LOGIN_KEY: veryStrongKey
       DEVELOPMENT: "true"
     restart: always
-  backend_development:
-    profiles: 
-      - backend-development
-      - development
-    build: 
-      context: ./backend/
-      dockerfile: development.dockerfile
-    depends_on:
-      - db
-    networks:
-      - database_network
-    ports:
-      - 8080:8080
-      - 3000:3000
-    volumes:
-      - ./backend/:/usr/src/app
-    environment:
-      DATABASE_URL: postgres://todoz:todozpassword@db:5432/todoz
-      LOGIN_KEY: veryStrongKey
-      DEVELOPMENT: "true"
-    restart: always
 networks:
   database_network:
 volumes:
