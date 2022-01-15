@@ -2,6 +2,16 @@
 # Created by https://www.toptal.com/developers/gitignore/api/node,react,reactnative,yarn,linux,macos,windows,nextjs,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,react,reactnative,yarn,linux,macos,windows,nextjs,visualstudiocode
 
+### Vagrant ###
+# General
+.vagrant/
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+# *.log
+
+### Vagrant Patch ###
+*.box
+
 # Personal
 
 out/

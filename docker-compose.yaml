@@ -2,10 +2,7 @@ services:
   # Database service
   db:
     profiles: 
-      - backend-development
-      - development
       - production
-      - backend-production
     image: postgres:14-alpine
     networks:
       - database_network
@@ -19,7 +16,6 @@ services:
   backend:
     profiles:
       - production
-      - backend-production
     build: 
       context: ./backend/
       dockerfile: Dockerfile
@@ -28,7 +24,7 @@ services:
       - database_network
     depends_on:
       - db
-    ports:
+    ports: 
       - 8080:8080
     environment:
       DATABASE_URL: postgres://todoz:todozpassword@db:5432/todoz
